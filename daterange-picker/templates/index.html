@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- local css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- daterangepicker css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <!-- Title -->
+    <title>Flask Date-Range Template</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <label for="daterange">Date Range</label>
+    <input type="text" name="daterange" id="daterange" value="01-01-2020 - 01-02-2020" />
+    <!-- daterange-picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <!-- local script for daterange picker -->
+    <script type="text/javascript">
+      $(() => {
+        $('input[name="daterange"]').daterangepicker({
+          opens: 'left'
+        });
+      });
+    </script>
+  </body>
+</html>
