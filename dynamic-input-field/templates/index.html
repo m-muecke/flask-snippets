@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- local css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- Title -->
+    <title>Flask Dynamic Input Field Template</title>
+  </head>
+  <body>
+  <h2>Flask Dynamic Input Field Template</h2>
+  {{ form.country }}
+  {{ form.city }}
+  <script type="text/javascript">
+    let country_select = document.getElementById("country");
+    let city_select = document.getElementById("city");
+
+    country_select.onchange = () => {
+
+      country = country_select.value;
+
+      fetch('/city/' + country)
+        .then(response => response.json())
+        .then(data => {
+          let optionHTML = '';
+          for (let city of data.cities) {
+            optionHTML += '<option value="' + city.id + '">' + city.name + '</option>';
+          }
+          city_select.innerHTML = optionHTML;
+      });
+    }
+  </script>
+  </body>
+</html>
