@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- local css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- Title -->
+    <title>Flask altair Template</title>
+  </head>
+  <body>
+    <div id="altair"></div>
+    <!-- Altair/Vega-Lite  -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script type="text/javascript">
+      // Renders interactive altair chart from json input.
+      (vegaEmbed => {
+        const embedOpt = {"mode": "vega-lite"};
+
+        const showError = (el, error) => {
+        el.innerHTML = ('<div class="error" style="color:red;">'
+                        + '<p>JavaScript Error: ' + error.message + '</p>'
+                        + "<p>This usually means there's a typo in your chart specification. "
+                        + "See the javascript console for the full traceback.</p>"
+                        + '</div>');
+        throw error;
+        };
+        const el = document.getElementById("altair");
+        // safe required to load correct format
+        vegaEmbed("#altair", {{ chart | safe }}, embedOpt)
+          .catch(error => showError(el, error));
+      })(vegaEmbed);
+    </script>
+  </body>
+</html>

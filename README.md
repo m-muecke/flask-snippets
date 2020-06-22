@@ -1,2 +1,2 @@
-# flask-templates
-Useful Flask Templates
+# flask-snippets
+Useful Flask snippets
